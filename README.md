@@ -33,8 +33,12 @@ Supports up to 128 files (single level directory) with ~33 MB storage space. Max
   
   save and close image
 
-+ `attrib +h filename`
++ `attrib +lable(or -label) filename`
 
-  make file hidden (-h to remove hidden attribute, +r/-r for read-only lable)
+  labels:
+  
+  - +h/-h make file hidden/remove hidden attribute
+  
+  - +r/-r for read-only lable
  
   
