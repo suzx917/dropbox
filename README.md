@@ -1,5 +1,5 @@
 # dropbox
-A block-based file system.
+A block-based user space portable file system.
 
 ## Storage
 Supports up to 128 files (single level directory) with ~33 MB storage space. Max single file size 10 MB.
