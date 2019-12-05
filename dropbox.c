@@ -267,10 +267,9 @@ int Put(const char *fname)
   // will copy BLOCK_SIZE bytes from the file then reduce our copy_size counter by
   // BLOCK_SIZE number of bytes. When copy_size is less than or equal to zero we know
   // we have copied all the data from the input file.
+  int id = 0;
   while( copy_size > 0 )
   {
-    int id = 0;
-
     // Index into the input file by offset number of bytes.  Initially offset is set to
     // zero so we copy BLOCK_SIZE number of bytes from the front of the file.  We 
     // then increase the offset by BLOCK_SIZE and continue the process.  This will
@@ -451,15 +450,18 @@ int GetDest(const char* fname, const char* dest)
       num_bytes = BLOCK_SIZE;
     }
 
+    int bid = inodes[nid].blocks[block_index];
+    //printf("bid = %d\n",bid);
+
     // Write num_bytes number of bytes from our data array into our output file.
-    fwrite( blocks[ inodes[nid].blocks[block_index] ], num_bytes, 1, ofp ); 
+    fwrite( blocks[bid], num_bytes, 1, ofp ); 
 
     // Reduce the amount of bytes remaining to copy, increase the offset into the file
     // and increment the block_index to move us to the next data block.
     copy_size -= num_bytes;
     offset    += num_bytes;
     ++block_index;
-
+    
     // Since we've copied from the point pointed to by our current file pointer, increment
     // offset number of bytes so we will be ready to copy to the next area of our output file.
     fseek( ofp, offset, SEEK_SET );
